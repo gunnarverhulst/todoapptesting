@@ -17,4 +17,3 @@ test("user clicks button", async () => {
     await user.click(addButton)
     expect(inputelement.value).toBe("");
 });
-
