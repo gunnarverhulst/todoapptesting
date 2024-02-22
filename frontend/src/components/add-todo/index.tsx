@@ -23,6 +23,7 @@ export function AddTodoForm() {
                 <input
                     id={`description-${id}`}
                     type="text"
+                    data-testid={'descriptionfield'}
                     value={description}
                     className={styles.inputText}
                     placeholder="Jog around the park"
