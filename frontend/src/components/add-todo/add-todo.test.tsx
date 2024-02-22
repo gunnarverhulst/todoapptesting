@@ -12,9 +12,9 @@ test("user hovers over a button", async () => {
 test("user clicks button", async () => {
     const {user, getByTestId} = render(<AddTodoForm />);
     const addButton = screen.getByRole("button", {name: /Add/i});
-    const descriptionField = getByTestId('descriptionfield');
-    fireEvent.change(descriptionField, { target: { value: 'Dummy Todo' } });
+    const inputelement = screen.getByRole("textbox", {name: /Description/i}) as HTMLInputElement;
+    fireEvent.change(inputelement, { target: { value: 'Dummy Todo' } });
     await user.click(addButton)
-    expect(descriptionField.value).toBe("");
+    expect(inputelement.value).toBe("");
 });
 
