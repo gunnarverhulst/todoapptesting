@@ -1,35 +1,18 @@
 import { countTodosLeft } from "./count.ts";
+import {faker} from "@faker-js/faker";
+import {TodoTO} from "../../lib/api.ts";
 
-test("dummy test", () => {
-    expect(1 + 1).toEqual(2);
-});
-
-const done = {
-    id: "3044efbc-7e54-4751-a96c-e01474caf8a7",
-    description: "Jog around the park",
-    done: true,
-};
-
-const todo = {
-    id: "3044efbc-7e54-4751-a96c-e01474caf8a7",
-    description: "Jog around the park",
-    done: false,
-};
-
-const todo1 = {
-    id: "3044efbc-7e54-4751-a96c-e01474caf8a7",
-    description: "Jog around the park",
-    done: false,
-};
-
+function buildTodo(done:boolean):TodoTO {
+    const id = faker.string.uuid();
+    const description = "this is an auto-generated todo";
+    return {id, description, done};
+}
 
 test.each([
     [[], 0],
-    [[done], 0],
-    [[todo], 1],
-    [[done, todo, todo1], 2]
+    [[buildTodo(true)], 0],
+    [[buildTodo(false)], 1],
+    [[buildTodo(true), buildTodo(false), buildTodo(false)], 2]
   ])('countTodosLeft(%o) -> %i', (a, expected) => {
     expect(countTodosLeft(a)).toBe(expected)
   })
-
-  
